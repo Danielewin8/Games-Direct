@@ -1,0 +1,37 @@
+CAPSTONE PROJECT PROPOSAL.
+
+1.What goal will your website be designed to achieve?
+	I hope to create an app that allows users who are looking for all kinds of information related to games an easy and efficient platform to use. Anything from genres to titles, to reviews or ratings presented in a clean and simple to view way based on data pulled from an api. Another feauture I would like to add afterwards is the ability to make a simple account. If applicable then the application could then show some similar and recommended things based on their own profile likes or favorites/interests. This would be a stand alone user profile that would be optional(this would be where most database integration would be involved).
+
+2.What kind of users will visit your site? In other words, what is the demographic of
+your users?
+	Gamers!
+
+3.What data do you plan on using? You may have not picked your actual API yet,
+which is fine, just outline what kind of data you would like it to contain.
+	I plan to use an api that can return information and descriptions on specific games. There is one I have found called RAWG, which claims to be the largest video game database and game discovery service.
+
+4.In brief, outline your approach to creating your project (knowing that you may not
+know everything in advance and that these details might change later). Answer
+questions like the ones below, but feel free to add more information:
+	
+	a. What does your database schema look like?
+My database would include a potential table for a personal user(including things like an id, username, etc). I would want the option for someone to make an account in order to take api data that they like (certain genres or games) and save them to their profile(hence making more tables like "User Games" or "User Genres", with the hopes of using this to recommend similar things, just for them.
+	
+	b. What kinds of issues might you run into with your API?
+Being able to distinguish and relay correct information regarding suggested games or genres in accordance with the data attributes a user has specified will probably be tricky. So if a user indicates they like shooter games or something like that, recommending similar games of that genre to them. A recommendation or suggestestion type of application is something I don't think I have done much of yet, so I think that will be a challenge.
+	
+	c. Is there any sensitive information you need to secure?
+I hope to make the option to make a profile very simple and straightforward. Some basic hashing for a user and their password. A user's profile should never be viewable to anyone except that user, it should just be a personal option for them if they would like it.
+	
+	d. What functionality will your app include?
+This app should simply act as an informational website on all things related to games, with the option of getting recommendations for a user if they would like.
+	
+	e. What will the user flow look like?
+Being able to see clear vivid descriptions on games and their respective data. A homepage could include a genral list of games, options to search, routes to pages specifically about genres, or lists of games by platform. There is a ton of info that should be easily accessible for users.
+	
+	f. What features make your site more than CRUD? Do you have any stretch goals?
+I hope to give a decently large amount of inner connectivity between api data points, so that they can all work and link together. The recommendations system. I will try my best to incorporate this.
+
+NOTE FOR MENTOR:
+The main idea for this first and foremost is just the games database idea, or the IMDB but with games thing. This will mostly be working with JS and api presentation, so the recommendation system is how I thought to incorporate database related aspects. The description/instructions for the project does state that I need to incorprate a database, so this is the best idea I could think of so far on how to include this. Please let me know if the issues we discussed before on our last call would still be a problem, or if this would be ok to implement.
