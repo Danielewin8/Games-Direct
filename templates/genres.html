@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cards">
+    <div class="container">
+        <h1 class="page-title">GENRES</h1>
+        <div class="row">
+            {% for genre in results %}
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="image"><img src="{{genre['image_background']}}" width="100%" height="150px"></div>
+                    <div class="main-text">
+                        <a href="/genres/{{genre['slug']}}" class="card-game-name">{{genre['name']}}</a>
+                        <div class="bottom-text d-none d-xl-block">
+                            {% if genre.get('games') %}
+                            Popular Games:
+                            {% for game in genre['games'][:3] %}
+                            <li class="genre-game-list"><a href="/games/{{game['id']}}" class="card-genre-games">{{game['name']}}</a></li>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

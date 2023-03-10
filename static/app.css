@@ -1,0 +1,423 @@
+html,
+body {
+    /* display: grid;
+    height: 100%;
+    text-align: center;
+    place-items: center; */
+    background: rgb(15, 15, 15);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* *******************************INFO CARDS****************************** */
+
+.cards {
+    position: relative;
+    padding: 30px 0 0 200px;
+    bottom: 15px;
+    left: 20px;
+}
+
+.page-title {
+    display: flex;
+    position: relative;
+    font-size: 80px;
+    font-weight: 900;
+    opacity: 100%;
+    color: azure;
+}
+
+.container {
+    max-width: 1400px;
+    padding-right: 8px;
+}
+
+.card {
+    height: 220px;
+    min-width: 130px;
+    opacity: 80%;
+    cursor: pointer;
+    display: block;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 15px;
+    border-color: rgb(20, 20, 20);
+    margin-bottom: 15px;
+    background-color: rgb(25, 25, 25);
+    color: azure;
+    padding-bottom: 10px;
+    transition: 0.4s;
+}
+
+@media (min-width: 1200px) {
+    .card:hover {
+        opacity: 100%;
+        height: 260px;
+    }
+}
+
+.row {
+    position: relative;
+}
+
+.image {
+    height: 200px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 100%;
+}
+
+.main-text {
+    position: relative;
+    bottom: 40px;
+    text-align: center;
+    color: azure;
+}
+
+.bottom-text {
+    text-align: left;
+    position: relative;
+    padding: 0 20px 15px 25px;
+    margin-top: 5px;
+    background: rgb(25, 25, 25);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
+    font-size: 13px;
+    right: 15px;
+}
+
+.card:hover .bottom-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card .bottom-text .text {
+    text-align: justify;
+}
+
+.card-game-genre {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: azure;
+}
+
+.card-genre-games {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: azure;
+    bottom: 1px;
+}
+
+.genre-game-list {
+    position: relative;
+    margin-bottom: -5px;
+    bottom: 1px;
+    left: 4px;
+    line-height: 19.3px;
+}
+
+.break {
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.card-game-platform {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: azure;
+}
+
+.card-game-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: azure;
+    font-size: 17px;
+    margin-top: 50px;
+}
+
+.card-game-genre:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+.card-game-platform:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+.card-game-name:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+.card-genre-game:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+
+
+/* *******************************NAV BAR****************************** */
+
+.base-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: azure;
+    padding-left: 3px;
+    padding-top: 5px;
+}
+
+.base-title:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+#nav {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(15, 15, 15)
+}
+
+.form-inputs{
+    position:relative;
+}
+.form-inputs .form-control{
+    border-radius: 5px;
+    height:35px; 
+    background-color: rgb(25, 25, 25);
+    color: azure;
+}
+
+.form-inputs .form-control:focus{
+    box-shadow:none;
+    border:1px solid azure;
+}
+
+.search-bar-btn{
+    position: relative;
+    border:1px solid rgb(240, 255, 255, 0.8);
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 30px;
+    right: 29px;
+    top: 2.6px;
+    background-color: rgb(25, 25, 25);
+    color: azure;
+}
+
+.search-bar-btn:hover{
+    cursor: pointer;
+}
+
+.user-btn {
+    position: relative;
+    float: right;
+    padding: 3px 15px 0px 3px;
+    font-size: 15px;
+    font-weight: 450;
+    color: azure;
+}
+
+.user-btn:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+.pag-button {
+    position: relative;
+    left: 482px;
+    border:1px solid rgb(240, 255, 255, 0.8);
+    background: rgb(15, 15, 15);
+    color: azure;
+    font-weight: 900;
+    width: 200px;
+    margin: 10px 3px 20px
+}
+
+.pag-button :active {
+    color: azure !important
+}
+
+.side-bar {
+    position: absolute;
+    max-width: 300px;
+    left: 10px;
+    top: 145px;
+    z-index: 1;
+}
+
+.side-bar-title {
+    position: relative;
+    text-align: left;
+    top: 50px;
+    font-size: 35px;
+    font-weight: 900;
+    color: azure;
+    padding-top: 5px;
+    max-width: 200px;
+}
+
+.side-bar-title-a {
+    color: azure;
+}
+
+.side-bar-title-a:hover {
+    color: rgb(10, 10, 10) !important;
+    cursor: pointer;
+}
+
+.side-bar-link {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    font-size: 20px;
+    font-weight: 300;
+    color: azure;
+    padding-left: 7px;
+}
+
+.side-bar-link:hover {
+    color: rgb(10, 10, 10) !important;
+    cursor: pointer;
+}
+
+i {
+    position: relative;
+    top: 3px;
+}
+
+/* *******************************GAME INFO****************************** */
+.game-card {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(10, 10, 10);
+    padding: 40px 0;
+    max-width: 950px;
+    left: 400px;
+}
+
+.game-container {
+    position: relative;
+    margin: 0 auto;
+    width: 1000px;
+    height: max-content;
+    overflow: hidden;
+    background: rgb(25, 25, 25);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 1);
+    position: relative;
+    bottom: 20px;
+    border-radius: 15px;
+}
+
+.hero {
+    position: relative;
+    border: 20px black;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 1);
+    top: 275px;
+    left: 10px;
+    height: 180px;
+    width: 200px;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.cover {
+    position: relative;
+    opacity: 85%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    bottom: 200px;
+    height: 375px;
+    width: 100%;
+}
+
+.about {
+    position: relative;  
+    color: azure;
+    font-weight: 900;
+}
+
+.title1 {
+    color: azure;
+    left: 225px;
+    bottom: 175px;
+    max-width: 666px;
+    font-size: 44px;
+    font-weight: 900;
+    position: relative;
+    line-height: 50px;
+}
+    
+.esrb {
+    position: relative;
+    left: 215px;
+    bottom: 180px;
+    margin-left: 12px;
+    background: azure;
+    border-radius: 5px;
+    color: rgb(10, 10, 10);
+    font-size: 14px;
+    padding: 0px 4px;
+}
+
+.info-container {
+    position: relative;
+    bottom: 155px;
+    width: 220px;
+    float: left;
+}
+
+.info-list {
+    position: relative;
+    bottom: 10px;
+    right: 40px;
+    padding-left: 50px;
+    width: 220px;
+    float: left;
+}
+
+.info-list-header {
+    position: relative;
+    color: azure;
+    text-align: left;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+.info-tag {
+    position: relative;
+    bottom: 10px;
+    margin-top: 5px;
+    color: azure;
+    font-size: 13px;
+    font-weight: 450;
+    padding-top: 10px;
+    padding-bottom: -15px;
+}
+
+.link-tag {
+    cursor: pointer;
+    position: relative;
+    bottom: 10px;
+    margin-top: 5px;
+    color: azure !important;
+    font-size: 13px;
+    font-weight: 450;
+    padding-top: 10px;
+}
+
+.link-tag:hover {
+    color: rgb(10, 10, 10) !important;
+}
+
+.description {
+    color: azure;
+    font-weight: 450;
+    font-size: 19px;
+    position: relative;
+    right: 11px;
+    bottom: 150px;
+    padding-left: 10px;
+    margin-left: 10px;
+    width: 600px;
+    float: left;
+}

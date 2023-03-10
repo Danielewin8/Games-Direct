@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cards">
+    <div class="container">
+        {% if slug == 'ROLE-PLAYING-GAMES-RPG' %}
+        <h1 class="page-title d-none d-lg-block">TOP RPG'S</h1>
+        {% else %}
+        <h1 class="page-title d-none d-lg-block">TOP {{slug}} GAMES</h1>
+        {% endif %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            {% for game in results %}
+            <div class="card-column col-md-3">
+                <div class="card">
+                    {% if game.get('background_image') %}
+                    <div class="image"><img src="{{game['background_image']}}" width="100%" height="150px"></div>
+                    {% else %}
+                    <div class="image"><img src="/static/images/no-image.png" width="100%" height="150px"></div>
+                    {% endif %}
+                    <div class="main-text">
+                        <a href="/games/{{game['id']}}" class="card-game-name">{{game['name']}}</a>
+                        <div class="bottom-text d-none d-xl-block">
+                            {% if game.get('genres') %}
+                            Genres:
+                            {% for genre in game['genres'][:3] %}
+                            <a href="/genres/{{genre['slug']}}" class="card-game-genre">{{genre['name']}}</a>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="break"></div>
+                            {% if game.get('platforms')%}
+                            Platforms:
+                            {% for platform in game['platforms'][:3] %}
+                            <a href="/platforms/{{platform['platform']}}" class="card-game-platform">{{platform['platform']['name']}}</a>
+                            {% endfor %}    
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if session['next_page'] %}
+        <a href="/category/next_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Next</a>
+        {% endif %}
+        {% if session['previous_page'] %}
+        <a href="/category/previous_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Previous</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

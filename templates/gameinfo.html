@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="game-card">
+    <div class="game-container">
+        <img src="{{data['background_image']}}" class="hero">
+        <img src="{{data['background_image_additional']}}" alt="cover" class="cover">
+        {% if data.get('esrb_rating') %}
+        <span class="esrb">{{data['esrb_rating']['name']}}</span>
+        {% else %}
+        <span class="esrb">NOT RATED</span>
+        {% endif %}
+        <div class="title1">{{data['name']}}</div>
+        <div class="container-fluid info-container">
+            <h5 class="info-list-header">Metacritic Score:</h5>
+            <span class="info-tag">{{data['metacritic']}}</span>
+            <h5 class="info-list-header">Release Date:</h5>
+            <span class="info-tag">{{data['released']}}</span>
+            <h5 class="info-list-header">Genres:</h5>
+            {% if data.get('genres') %}
+            {% for genre in data['genres']%}
+            <a href="/genres/{{genre['slug']}}" class="link-tag">{{genre['name']}}</a>
+            {% endfor %}
+            {% endif %}
+            <h5 class="info-list-header">Platforms:</h5>
+            {% if data.get('platforms')%}
+            {% for platform in data['platforms'] %}
+            {% if platform['platform']['name'] == 'Xbox Series S/X' %}
+            <a href="/platforms/%7B'id':186,%20'name':%20'Xbox Series X',%20'slug':%20'xbox-series-x'%7D"
+                class="link-tag">{{platform['platform']['name']}}</a>
+            {% else %}
+            <!-- This version of platform data has unwanted key value pairs attatched to it, so in order to work with my route, I had to literally write out the full part of the url to remove the unwanted key/values, and to have it to work like the others -->
+            <a href="/platforms/%7B'id':{{platform['platform']['id']}},%20'name':%20'{{platform['platform']['name']}}',%20'slug':%20'{{platform['platform']['slug']}}'%7D"
+                class="link-tag">{{platform['platform']['name']}}</a>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <h5 class="info-list-header">Developer:</h5>
+            {% for dev in data['developers']%}
+            <span class="info-tag">{{dev['name']}}</span>
+            {% endfor %}
+            <h5 class="info-list-header">Publisher:</h5>
+            {% for pub in data['publishers']%}
+            <span class="info-tag">{{pub['name']}}</span>
+            {% endfor %}
+        </div>
+        <div class="description">
+            <h2 class="about">About</h2>
+            <p>{{data['description_raw']}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cards">
+    <div class="container">
+        {% if slug == 'ROLE-PLAYING-GAMES-RPG' %}
+        <h1 class="page-title d-none d-lg-block">TOP RPG'S</h1>
+        {% elif six_months %}
+        <h1 class="page-title d-none d-lg-block">UPCOMING GAMES</h1>
+        {% elif one_month %}
+        <h1 class="page-title d-none d-lg-block">NEWLY RELEASED</h1>
+        {% else %}
+        <h1 class="page-title d-none d-lg-block">TOP {{slug}} GAMES</h1>
+        {% endif %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            {% for game in results %}
+            <div class="card-column col-md-3">
+                <div class="card">
+                    {% if game.get('background_image') %}
+                    <div class="image"><img src="{{game['background_image']}}" width="100%" height="150px"></div>
+                    {% else %}
+                    <div class="image"><img src="/static/images/no-image.png" width="100%" height="150px"></div>
+                    {% endif %}
+                    <div class="main-text">
+                        <a href="/games/{{game['id']}}" class="card-game-name">{{game['name']}}</a>
+                        <div class="bottom-text d-none d-xl-block">
+                            {% if game.get('genres') %}
+                            Genres:
+                            {% for genre in game['genres'][:3] %}
+                            <a href="/genres/{{genre['slug']}}" class="card-game-genre">{{genre['name']}}</a>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="break"></div>
+                            {% if game.get('platforms')%}
+                            Platforms:
+                            {% for platform in game['platforms'][:3] %}
+                            {% if platform['platform']['name'] == 'Xbox Series S/X' %}
+                            <a href="/platforms/%7B'id':186,%20'name':%20'Xbox Series X',%20'slug':%20'xbox-series-x'%7D" class="card-game-platform">{{platform['platform']['name']}}</a>
+                            {% else %}
+                            <a href="/platforms/{{platform['platform']}}" class="card-game-platform">{{platform['platform']['name']}}</a>
+                            {% endif %}
+                            {% endfor %}    
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if session['next_page'] %}
+        <a href="/games/next_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Next</a>
+        {% endif %}
+        {% if session['previous_page'] %}
+        <a href="/games/previous_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Previous</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- <form action="/games/next_page">
+    <button name="next" value="{{next_page}}">Next</button>
+</form>
+
+<form action="/games/previous_page">
+    <button name="previous" value="{{previous_page}}">Previous</button>
+</form> -->
+
+{% endblock %}
+
+
+

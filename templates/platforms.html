@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cards">
+    <div class="container">
+        <h1 class="page-title">PLATFORMS</h1>
+        <div class="row">
+            {% for platform in results %}
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="image"><img src="{{platform['image_background']}}" width="100%" height="150px"></div>
+                    <div class="main-text">
+                        {% if platform['name'] == 'Xbox Series S/X' %}
+                        <a href="/platforms/%7B'id':186,%20'name':%20'Xbox Series X',%20'slug':%20'xbox-series-x'%7D" class="card-game-name">{{platform['name']}}</a>
+                        {% else %}
+                        <!-- This version of platform data has unwanted key value pairs attached to it, so in order to work with my route, I had to literally write out the full part of the url to remove the unwanted key/values, and to have it to work like the others -->
+                        <a href="/platforms/%7B'id':{{platform['id']}},%20'name':%20'{{platform['name']}}',%20'slug':%20'{{platform['slug']}}'%7D" class="card-game-name">{{platform['name']}}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
