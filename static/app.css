@@ -1,9 +1,5 @@
 html,
 body {
-    /* display: grid;
-    height: 100%;
-    text-align: center;
-    place-items: center; */
     background: rgb(15, 15, 15);
     font-family: 'Poppins', sans-serif;
 }
@@ -37,7 +33,7 @@ body {
     opacity: 80%;
     cursor: pointer;
     display: block;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     border-radius: 15px;
     border-color: rgb(20, 20, 20);
@@ -52,6 +48,28 @@ body {
     .card:hover {
         opacity: 100%;
         height: 260px;
+    }
+}
+
+.plat-card {
+    height: 220px;
+    min-width: 130px;
+    opacity: 80%;
+    cursor: pointer;
+    display: block;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 15px;
+    border-color: rgb(20, 20, 20);
+    margin-bottom: 15px;
+    background-color: rgb(25, 25, 25);
+    color: azure;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 1200px) {
+    .plat-card:hover {
+        opacity: 100%;
     }
 }
 
@@ -265,6 +283,26 @@ body {
     cursor: pointer;
 }
 
+.side-bar-user {
+    position: relative;
+    text-align: left;
+    bottom: 25px;
+    font-size: 35px;
+    font-weight: 900;
+    color: azure;
+    padding-top: 5px;
+    max-width: 200px;
+}
+
+.side-bar-title-user {
+    color: azure;
+}
+
+.side-bar-title-user:hover {
+    color: rgb(10, 10, 10) !important;
+    cursor: pointer;
+}
+
 .side-bar-link {
     font-family: 'Poppins', sans-serif;
     position: relative;
@@ -296,7 +334,7 @@ i {
 
 .game-container {
     position: relative;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 1000px;
     height: max-content;
     overflow: hidden;
@@ -309,12 +347,12 @@ i {
 
 .hero {
     position: relative;
-    border: 20px black;
+    border: 1px solid black;
     box-shadow: 0 0 25px rgba(0, 0, 0, 1);
     top: 275px;
     left: 10px;
-    height: 180px;
-    width: 200px;
+    height: 170px;
+    width: 180px;
     border-radius: 3px;
     z-index: 1;
 }
@@ -412,12 +450,96 @@ i {
 .description {
     color: azure;
     font-weight: 450;
-    font-size: 19px;
+    font-size: 15px;
     position: relative;
     right: 11px;
-    bottom: 150px;
+    bottom: 170px;
     padding-left: 10px;
     margin-left: 10px;
-    width: 600px;
+    width: 700px;
     float: left;
+}
+
+.fav-btn {
+    position: relative;
+    width: 80px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+/* *******************************USER FORMS****************************** */
+
+.user-form {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: azure;
+    left: 400px;
+    top: 20px;
+}
+
+.user-btn-2 {
+    background: azure;
+    border-radius: 5px;
+    color: rgb(10, 10, 10);
+}
+
+.user-profile {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: azure;
+    left: 400px;
+    top: 20px;
+}
+
+.profile-pic {
+    position: relative;
+    border: solid 1px black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    height: 130px;
+    width: 140px;
+    border-radius: 135px;
+}
+
+.profile-name {
+    position: relative;
+    bottom: 180px;
+    left: 180px;
+}
+
+.user-favorites {
+    position: relative;
+    left: 100px;
+}
+
+.favorite-div {
+    position: relative;
+    bottom: 25px;
+}
+
+.my-favorites {
+    color: azure;
+    font-weight: 450;
+}
+
+.remove-fav {
+    position: relative;
+    left: 110px;
+    top: 10px;
+}
+
+.user-title {
+    display: flex;
+    position: relative;
+    font-size: 80px;
+    font-weight: 900;
+    opacity: 100%;
+    color: azure;
+    bottom: 110px;
+    left: 160px;
+}
+
+.user-delete {
+    position: relative;
+    bottom: 120px;    
+    left: 150px;
 }

@@ -12,6 +12,14 @@
         {% endif %}
         <div class="title1">{{data['name']}}</div>
         <div class="container-fluid info-container">
+            {% if session['username'] %}
+            <form action="/games/{{data['id']}}/{{session['username']}}/favorite" method="POST">
+                <input type="hidden" value="{{data['id']}}" name="game_id">
+                <input type="hidden" value="{{data['name']}}" name="name">
+                <input type="hidden" value="{{data['background_image']}}" name="background_image">
+                <button class="btn fav-btn user-btn-2" type="submit">Favorite</button>
+            </form>
+            {% endif %}
             <h5 class="info-list-header">Metacritic Score:</h5>
             <span class="info-tag">{{data['metacritic']}}</span>
             <h5 class="info-list-header">Release Date:</h5>
@@ -29,7 +37,7 @@
             <a href="/platforms/%7B'id':186,%20'name':%20'Xbox Series X',%20'slug':%20'xbox-series-x'%7D"
                 class="link-tag">{{platform['platform']['name']}}</a>
             {% else %}
-            <!-- This version of platform data has unwanted key value pairs attatched to it, so in order to work with my route, I had to literally write out the full part of the url to remove the unwanted key/values, and to have it to work like the others -->
+            <!-- This version of platform data has unwanted key value pairs attached to it, so in order to work with my route, I had to literally write out the full part of the url to remove the unwanted key/values, and to have it to work like the others -->
             <a href="/platforms/%7B'id':{{platform['platform']['id']}},%20'name':%20'{{platform['platform']['name']}}',%20'slug':%20'{{platform['platform']['slug']}}'%7D"
                 class="link-tag">{{platform['platform']['name']}}</a>
             {% endif %}

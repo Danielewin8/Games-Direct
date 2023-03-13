@@ -14,20 +14,19 @@ def connect_db(app):
 class User(db.Model):
     __tablename__ = "users"
 
-    id = db.Column(db.Text, nullable=False, primary_key=True,)
-    username = db.Column(db.Text, nullable=False, unique=True)
+    username = db.Column(db.Text, primary_key=True, nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
-    email = db.Column(db.Text, nullable=False, unique=True)
-    image_url = db.Column(db.Text, default="/static/images/default-pic.png")
-    about = db.Column(db.Text)
+    image_url = db.Column(db.Text, nullable=False, default="/static/images/default-pic.png")
+
+    favorites = db.relationship("Favorite", cascade="all, delete", backref="user")
 
     @classmethod
-    def register(cls, username, password, email, image_url):
+    def register(cls, username, password, image_url):
         """Registers user info with hashed password"""
         hashed = bcrypt.generate_password_hash(password)
         hashed_utf8 = hashed.decode("utf8")
 
-        return cls(username=username, password=hashed_utf8, email=email, image_url=image_url)
+        return cls(username=username, password=hashed_utf8, image_url=image_url)
 
     @classmethod
     def authenticate(cls, username, password):
@@ -37,4 +36,14 @@ class User(db.Model):
             return user
         else:
             return False
+
+class Favorite(db.Model):
+    __tablename__ = "favorites"
+
+    id = db.Column(db.Integer, nullable=False, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(20), db.ForeignKey('users.username'), nullable=False)
+    game_id = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.Text, nullable=False)
+    background_image = db.Column(db.Text)
+
 

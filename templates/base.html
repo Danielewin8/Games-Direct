@@ -34,8 +34,12 @@
         <div class="col-md-2">
           <div class="d-flex d-none d-md-flex flex-row align-items-center">
             <div>
-              <a href="#" class="user-btn">Sign Up</a>
-              <a href="#" class="user-btn">Login</a>
+              {% if session['username'] %}
+              <a href="/logout" class="user-btn">Logout</a>
+              {% else %}
+              <a href="/register" class="user-btn">Sign Up</a>
+              <a href="/login" class="user-btn">Login</a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -44,8 +48,11 @@
   </section>
 
   <div class="side-bar container">
+    {% if session['username'] %}
+    <div class="list-group side-bar-user"><a class="side-bar-title-a" href="/users/{{session['username']}}">MY PROFILE</a></div>
+    {% endif %}
     <div class="list-group side-bar-title"><a class="side-bar-title-a" href="/games">GAMES</a>
-      <span><i class="fa-solid fa-face-grin-stars"></i><a class="side-bar-link" href="/games/new">New Releases</a></span>
+      <span><i class="fa-regular fa-star"></i><a class="side-bar-link" href="/games/new">New Releases</a></span>
       <span><i class="fa-solid fa-calendar-days"></i><a class="side-bar-link" href="/games/upcoming">Upcoming</a></span>
     </div>
     <br>

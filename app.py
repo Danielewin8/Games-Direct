@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, session, flash, jsonify
-from models import db, connect_db, User
+from models import db, connect_db, User, Favorite
+from forms import SignUpForm, LoginForm
 from secret import API_SECRET_KEY
 import requests
 import os
@@ -10,7 +11,13 @@ from dateutil.relativedelta import relativedelta
 app = Flask(__name__)
 app.app_context().push() 
 
-app.config["SECRET_KEY"] = 'abc123'
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///GamesDB"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ECHO"] = True
+app.config["SECRET_KEY"] = "gamin123"
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+
+connect_db(app)
 
 @app.route('/')
 def homepage():
@@ -18,12 +25,12 @@ def homepage():
 
     return redirect('/games')
 
-# /* **************************MAIN ROUTES FOR DISPLAYING GAMES BY DIFFERENT CATEGORIES(Goes until line 276)************************* */
+# /* **************************MAIN ROUTES FOR DISPLAYING GAMES BY DIFFERENT CATEGORIES(Goes until line 312)************************* */
 @app.route('/games')
 def games_page():
     """Homepage for presenting a list of games"""
 # Clears the session. Gets current date and five months prior, for use in sorting api data by date. Api request with prefered params saved to BASE_URL
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     # ONCE YOU INPUT USER STUFF FOR SESSION REMEMBER AT THE END OF THIS LIST COMPREHENSION ADD if key != "user thing", hopefully should remove all session stuff except for the a logged in user.
     current_date = date.today()
     five_months = current_date + relativedelta(months=-5)
@@ -47,7 +54,7 @@ def games_page():
 def games_upcoming_page():
     """Homepage for presenting a list of most anticipated games"""
 # Clears the session. Gets current date and six months ahead, for use in sorting api data by date. Api request with prefered params saved to BASE_URL
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     current_date = date.today()
     six_months = current_date + relativedelta(months=+6)
     BASE_URL = f"https://rawg.io/api/games?dates={current_date},{six_months}&ordering=-added&page_size=40"
@@ -71,7 +78,7 @@ def games_upcoming_page():
 def games_new_page():
     """Homepage for presenting a list of newly released games"""
 # Clears the session. Gets current date and one month prior, for use in sorting api data by date. Api request with prefered params saved to BASE_URL
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     current_date = date.today()
     one_month = current_date + relativedelta(months=-1)
     BASE_URL = f"https://rawg.io/api/games?dates={one_month},{current_date}&ordering=-added&page_size=40"
@@ -181,7 +188,7 @@ def previous_category_page():
 
 @app.route('/genres')
 def genres_page():
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     """Page for presenting a list of genres"""
     resp = requests.get("https://rawg.io/api/genres?page_size=40", params = {"key": API_SECRET_KEY})
 # Saves relative data from api. results holds all the data needed for presenting things through Jinja on my HTML templates     
@@ -195,7 +202,7 @@ def genres_page():
 @app.route('/genres/<slug>')
 def genre_games_page(slug):
     """Page for presenting a list of games by a specific genre"""
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     session['slug'] = slug
     BASE_URL = f"https://rawg.io/api/games?genres={slug}&ordering=-added&page_size=40"
 # Requests a list of games by genre using the api genre id
@@ -214,7 +221,7 @@ def genre_games_page(slug):
 
 @app.route('/platforms')
 def platforms_page():
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     """Page for presenting a list of platforms"""
     resp = requests.get("https://rawg.io/api/platforms?page_size=40", params = {"key": API_SECRET_KEY})
 # Saves relative data from api. results holds all the data needed for presenting things through Jinja on my HTML templates.    
@@ -226,7 +233,7 @@ def platforms_page():
 @app.route('/platforms/<slug>')
 def platform_games_page(slug):
     """Page for presenting a list of games by a specific platform"""
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
 # An annoying part of the api is that I have to request games by platform by the platform id instead of name. So this extracts the platform and name seperately to be used in the request and the jinja template.
     plat_dict = eval(slug)
     id = plat_dict['id']
@@ -252,7 +259,7 @@ def platform_games_page(slug):
 @app.route('/search')
 def search():
     """Handles search bar input for api search request"""
-    [session.pop(key) for key in list(session.keys())]
+    [session.pop(key) for key in list(session.keys()) if key != "username"]
     search = request.args.get('search')
     BASE_URL = f"https://rawg.io/api/games?search={search}&page_size=40"
 
@@ -303,3 +310,96 @@ def search_previous_page():
     session['previous_page'] = previous_page
 
     return render_template('search.html', results=results, next_page=next_page, previous_page=previous_page)
+
+# /* **************************USER ROUTES************************* */
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+    """Route for registering user"""
+
+    form = SignUpForm()
+
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        image_url = form.image_url.data or None
+
+        user = User.register(username, password, image_url)
+
+        db.session.add(user)
+        db.session.commit()
+        session['username'] = user.username
+        # on a successfull login, redirect to main page
+        return redirect('/')
+        
+    else:
+        return render_template('register.html', form=form)
+
+@app.route('/login', methods=['GET','POST'])
+def login_route():
+
+    form = LoginForm()
+    
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+
+        user = User.authenticate(username, password)
+
+        if user:
+            session['username'] = user.username
+            return redirect('/')
+        else:
+            form.username.errors = ['Invalid username/password']
+
+    return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    session.pop('username')
+
+    return redirect('/')
+
+@app.route('/users/<username>')
+def user_page(username):
+    if "username" in session and username == session['username']:
+        user = User.query.get(username)
+        favorite = user.favorites
+
+        return render_template('user.html', user=user, favorite=favorite)
+
+@app.route('/users/<username>/delete', methods=["POST"])
+def delete_user(username):
+    """Handle form submission for deleting an existing user"""
+
+    user = User.query.get_or_404(username)
+    db.session.delete(user)
+    db.session.commit()
+    session.pop('username')
+
+    return redirect("/")
+
+@app.route('/games/<int:id>/<username>/favorite', methods=["POST"])
+def add_fav(id, username):
+    """Favorites a game"""
+    user = User.query.get_or_404(username)
+    game_id = request.form.get('game_id')
+    name = request.form.get('name')
+    background_image = request.form.get('background_image')
+
+    favorite = Favorite(username=session['username'], game_id=game_id, name=name, background_image=background_image)
+    db.session.add(favorite)
+    db.session.commit()
+
+    return redirect(f'/users/{user.username}')
+
+@app.route('/games/<int:id>/<username>/delete', methods=["POST"])
+def delete_fav(id, username):
+    """Deletes a favorite"""
+    favorite = Favorite.query.get(id)
+    user = User.query.get_or_404(username)
+    
+    db.session.delete(favorite)
+    db.session.commit()
+
+    return redirect(f'/users/{user.username}')

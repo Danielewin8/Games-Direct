@@ -40,11 +40,11 @@
             </div>
             {% endfor %}
         </div>
-        {% if session['next_page'] %}
-        <a href="/search/next_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Next</a>
-        {% endif %}
         {% if session['previous_page'] %}
         <a href="/search/previous_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Previous</a>
+        {% endif %}
+        {% if session['next_page'] %}
+        <a href="/search/next_page" class="pag-button btn btn-lg active" role="button" aria-pressed="true">Next</a>
         {% endif %}
     </div>
 </div>
