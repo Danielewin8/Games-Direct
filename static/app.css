@@ -334,12 +334,12 @@ i {
 
 .game-container {
     position: relative;
-    /* margin: 0 auto; */
+    margin: 0 auto;
     width: 1000px;
     height: max-content;
     overflow: hidden;
-    background: rgb(25, 25, 25);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 1);
+    background: rgb(10, 10, 10);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
     position: relative;
     bottom: 20px;
     border-radius: 15px;
@@ -494,7 +494,7 @@ i {
 .profile-pic {
     position: relative;
     border: solid 1px black;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
     height: 130px;
     width: 140px;
     border-radius: 135px;
@@ -518,7 +518,7 @@ i {
 
 .my-favorites {
     color: azure;
-    font-weight: 450;
+    font-weight: 650;
 }
 
 .remove-fav {
