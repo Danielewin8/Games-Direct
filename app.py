@@ -11,7 +11,8 @@ from dateutil.relativedelta import relativedelta
 app = Flask(__name__)
 app.app_context().push() 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///GamesDB"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    'DATABASE_URL', "postgresql:///GamesDB")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 app.config["SECRET_KEY"] = os.eviron.get('SECRET_KEY', 'hellosecret1')
