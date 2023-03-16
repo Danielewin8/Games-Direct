@@ -14,7 +14,7 @@ app.app_context().push()
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///GamesDB"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "gamin123"
+app.config["SECRET_KEY"] = os.eviron.get('SECRET_KEY', 'hellosecret1')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
