@@ -11,10 +11,11 @@ from dateutil.relativedelta import relativedelta
 app = Flask(__name__)
 app.app_context().push() 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///GamesDB"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    'DATABASE_URL', "postgresql:///GamesDB")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "gamin123"
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY', 'hellosecret1')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
