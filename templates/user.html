@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.username }}{% endblock %}
+{% block content %}
+
+<div class="cards">
+    <div class="container">
+        <div>
+            <img class="profile-pic" src="{{ user.image_url }}">
+            <h1 class="user-title d-none d-lg-block">{{ user.username }}</h1>
+            <div class="user-delete">
+                <form action="/users/{{user.username}}/delete" method="POST">
+                    <button class="btn user-btn-2">Delete User</button>
+                </form>
+            </div>
+        </div>
+        <div class="favorite-div">
+            <h3 class="my-favorites">My Favorites:</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                {% for game in user.favorites %}
+                <div class="card-column col-md-3">
+                    <div class="card">
+                        <div class="image"><img src="{{game.background_image}}" width="100%" height="150px"></div>
+                        <div class="main-text">
+                            <a href="/games/{{game.game_id}}" class="card-game-name">{{game.name}}</a>
+                            <div class="bottom-text d-none d-xl-block">
+                                <form action="/games/{{game.id}}/{{user.username}}/delete" method="POST">
+                                    <button class="btn remove-fav user-btn-2" type="submit">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

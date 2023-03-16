@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/lumen/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="https://kit.fontawesome.com/9a1d8fa1b5.js" crossorigin="anonymous"></script>
+  <title>Games Direct</title>
+</head>
+
+<body>
+  <section class="header-main border-bottom bg-white">
+    <div class="container-fluid" id="nav">
+      <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
+        <div class="col-md-2">
+          <a href="/games" class="base-title">GAMES DIRECT</a>
+        </div>
+        <div class="col-md-8">
+          <form class="d-flex form-inputs" name='search' action="/search">
+            <input class="form-control" name="search" type="text" placeholder="Search">
+            <button type="submit" class="search-bar-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="col-md-2">
+          <div class="d-flex d-none d-md-flex flex-row align-items-center">
+            <div>
+              {% if session['username'] %}
+              <a href="/logout" class="user-btn">Logout</a>
+              {% else %}
+              <a href="/register" class="user-btn">Sign Up</a>
+              <a href="/login" class="user-btn">Login</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="side-bar container">
+    {% if session['username'] %}
+    <div class="list-group side-bar-user"><a class="side-bar-title-a" href="/users/{{session['username']}}">MY PROFILE</a></div>
+    {% endif %}
+    <div class="list-group side-bar-title"><a class="side-bar-title-a" href="/games">GAMES</a>
+      <span><i class="fa-regular fa-star"></i><a class="side-bar-link" href="/games/new">New Releases</a></span>
+      <span><i class="fa-solid fa-calendar-days"></i><a class="side-bar-link" href="/games/upcoming">Upcoming</a></span>
+    </div>
+    <br>
+    <div class="list-group side-bar-title"><a class="side-bar-title-a" href="/genres">GENRES</a>
+      <span><i class="fa-solid fa-hand-fist"></i><a class="side-bar-link" href="/genres/action">Action</a></span>
+      <span><i class="fa-solid fa-gun"></i><a class="side-bar-link" href="/genres/shooter">Shooter</a></span>
+      <span><i class="fa-solid fa-hat-wizard"></i><a class="side-bar-link" href="/genres/role-playing-games-rpg">RPG</a></span>
+      <span><i class="fa-solid fa-gem"></i><a class="side-bar-link" href="/genres/adventure">Adventure</a></span>
+      <span><i class="fa-regular fa-heart"></i><a class="side-bar-link" href="/genres/indie">Indie</a></span>
+    </div>
+    <br>
+    <div class="list-group side-bar-title"><a class="side-bar-title-a" href="/platforms">PLATFORMS</a>
+      <span><i class="fa-brands fa-steam"></i><a class="side-bar-link" href="/platforms/%7B'id':4,%20'name':%20'PC',%20'slug':%20'pc'%7D">PC</a></span>
+      <span><i class="fa-brands fa-playstation"></i><a class="side-bar-link" href="/platforms/%7B'id':187,%20'name':%20'PlayStation 5',%20'slug':%20'playstation5'%7D">Playstation</a></span>
+      <span><i class="fa-brands fa-xbox"></i><a class="side-bar-link" href="/platforms/%7B'id':186,%20'name':%20'Xbox Series X',%20'slug':%20'xbox-series-x'%7D">Xbox<xspa></a></span>
+      <span><i class="fa-solid fa-gamepad"></i><a class="side-bar-link" href="/platforms/%7B'id':7,%20'name':%20'Nintendo Switch',%20'slug':%20'nintendo-switch'%7D">Nintendo</a></span>
+      <span><i class="fa-brands fa-apple"></i><a class="side-bar-link" href="/platforms/%7B'id':3,%20'name':%20'iOS',%20'slug':%20'ios'%7D">iOS</a></span>
+      <span><i class="fa-solid fa-mobile"></i><a class="side-bar-link" href="/platforms/%7B'id':21,%20'name':%20'Android',%20'slug':%20'android'%7D">Android</a></span>
+    </div>
+  </div>      
+  
+
+  {% block content %}
+  {% endblock %}
+
+</body>
+
+</html>
