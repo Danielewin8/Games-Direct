@@ -19,7 +19,7 @@ The site uses the following technologies:
 </ul> 
 
 # Typical User Flow
-The website uses the RAWG Video Game Api(which is included below) to request different aspects about games and present them in an easy to view way. Anyone who uses the site can search for games by specific criteria such as games with specific genres (for example, Action or Shooter) or platforms (for example, PC or Playstation). Relative or similar data about a game is shown so a user can see what groups a game belongs to. This is the main use of the site as it is intended as a library, but there is some basic user functionality included that allows a user to register a profile if they wish, and with that favorite games of their choice. 
+The website uses the RAWG Video Game API (which is included below) to request different aspects about games and present them in an easy to view way. Anyone who uses the site can search for games by specific criteria such as games with specific genres (for example, Action or Shooter) or platforms (for example, PC or Playstation). Relative or similar data about a game is shown so a user can see what groups a game belongs to. This is the main use of the site as it is intended as a library, but there is some basic user functionality included that allows a user to register a profile if they wish, and with that favorite games of their choice. 
 
 # API: 
 https://rawg.io/apidocs
