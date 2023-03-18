@@ -1,6 +1,6 @@
 # CapstoneProject - Games Direct - Daniel Lewin
 # https://games-direct.herokuapp.com/games
 
-![preview](GamesDirectPreview/to/img.jpg?raw=true "Title")
+<img src="C:\Users\danie\OneDrive\Pictures\GamesDirectPreview.jpg" alt="Alt text" title="Preview Image">
 
 API: https://rawg.io/apidocs
