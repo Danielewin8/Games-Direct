@@ -8,7 +8,7 @@ My intention with this project was to create a video game directory using skills
 
 The site uses the following technologies:
 <ol>
-  <li>Python/li>
+  <li>Python</li>
   <li>Flask</li>
   <li>Jinja</li>
   <li>PostgreSQL</li>
