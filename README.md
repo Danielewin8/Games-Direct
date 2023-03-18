@@ -4,7 +4,7 @@
 ![My Image](GamesDirectPreview.jpg)
 
 # About
-My intention with this project was to create a video game directory using skills I have gained in Springboard's Software Engineering Career Track course. The site provides an easy and straight forward way to search and filter through games by different categories and get basic information about them, with the option of creating a basic account to add and save favorite games. As this is a student project, a lot of the code will remain commented to show my intentions. 
+My intention with this project was to create a video game directory using skills I have gained in Springboard's Software Engineering Career Track course. The site provides an easy and straight forward way to search and filter through games by different categories and get basic information about them, with the option of creating a basic account to add and save favorite games. As this is a student project, a lot of the code will remain commented to show my intentions and what not. 
 
 The site uses the following technologies:
 <ul>
