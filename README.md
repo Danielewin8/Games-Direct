@@ -1,8 +1,7 @@
 # CapstoneProject - Games Direct - Daniel Lewin
 # https://games-direct.onrender.com/games
 
-![My Image](![GamesDirectPreview](https://github.com/Danielewin8/Games-Direct/assets/113627851/bcad2e8e-0d34-41a3-a80c-8cd5685aa2bb)
-)
+![GamesDirectPreview](https://github.com/Danielewin8/Games-Direct/assets/113627851/bcad2e8e-0d34-41a3-a80c-8cd5685aa2bb)
 
 # About
 My intention with this project was to create a video game directory using skills I have gained in Springboard's Software Engineering Career Track course. The site provides an easy and straight forward way to search and filter through games by different categories and get basic information about them, with the option of creating a basic account to add and save favorite games. As this is a student project, a lot of the code will remain commented to show my intentions and what not. 
