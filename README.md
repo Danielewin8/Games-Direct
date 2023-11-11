@@ -1,5 +1,5 @@
 # CapstoneProject - Games Direct - Daniel Lewin
-# https://games-direct.herokuapp.com/games
+# https://games-direct.onrender.com/games
 
 ![My Image](GamesDirectPreview.jpg)
 
